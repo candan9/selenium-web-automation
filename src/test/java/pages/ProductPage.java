@@ -1,6 +1,5 @@
 package pages;
 
-import enitities.Product;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -21,7 +20,7 @@ public class ProductPage {
     Actions action;
     FileProccess fp;
 
-    public ProductPage(WebDriver driver) {
+    public ProductPage(WebDriver driver) throws IOException {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 10);
         this.elementHelper = new ElementHelper(driver);

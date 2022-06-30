@@ -10,7 +10,7 @@ public class FileProccess {
     FileWriter fw;
     BufferedReader br;
     BufferedWriter writer;
-    public void FileProcess() throws IOException {
+    public FileProccess() throws IOException {
         this.classpathRoot = new File(System.getProperty("user.dir"));
         this.fileDir = new File(classpathRoot, "src/test/resources/");
         this.file = new File(fileDir, "text-data.txt");

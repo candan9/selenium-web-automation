@@ -7,12 +7,13 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import java.util.List;
+import java.util.Random;
 
 public class ElementHelper {
     WebDriver driver;
     WebDriverWait wait;
     Actions action;
-
+    Random rand = new Random();
     public ElementHelper(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 10);
@@ -88,6 +89,7 @@ public class ElementHelper {
      */
     public void click(By key) {
         Log4j.info("clicking"+key.toString());
+        wait.until(ExpectedConditions.elementToBeClickable(key));
         StaleElementHandleByClassName(key);
     }
 
@@ -309,6 +311,15 @@ public class ElementHelper {
         Log4j.info("finding first element of "+key.toString());
         List<WebElement> elements = presenceElements(key);
         WebElement element = elements.get(0);
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        return element;
+    }
+
+    public WebElement findElementRandom(By key) {
+        Log4j.info("finding first element of "+key.toString());
+        int random = rand.nextInt(4);
+        List<WebElement> elements = presenceElements(key);
+        WebElement element = elements.get(random);
         wait.until(ExpectedConditions.elementToBeClickable(element));
         return element;
     }

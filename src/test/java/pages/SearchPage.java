@@ -32,6 +32,6 @@ public class SearchPage {
     }
 
     public void clickAProduct() {
-        elementHelper.click(img_product);
+        elementHelper.findElementRandom(img_product).click();
     }
 }

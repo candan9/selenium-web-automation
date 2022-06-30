@@ -14,6 +14,10 @@ public class makeOrderStepDefs {
     SearchPage searchPage = new SearchPage(DriverFactory.getDriver());
     HomePage homePage = new HomePage(DriverFactory.getDriver());
     ProductPage productPage = new ProductPage(DriverFactory.getDriver());
+    CartPage cartPage = new CartPage(DriverFactory.getDriver());
+
+    public makeOrderStepDefs() throws IOException {
+    }
 
 
     @Then("should see {string} title next")
@@ -67,6 +71,7 @@ public class makeOrderStepDefs {
 
     @When("click add to basket")
     public void clickAddToBasket() {
+        homePage.acceptCookies();
         productPage.clickAddToBasket();
     }
 
@@ -76,7 +81,27 @@ public class makeOrderStepDefs {
     }
 
     @Then("assert product price")
-    public void assertProductPrice() {
+    public void assertProductPrice() throws IOException {
+        cartPage.checkProductPrice();
+    }
 
+    @When("increase count to {string}")
+    public void increaseCountTo(String count) {
+        cartPage.increaseCount(count);
+    }
+
+    @Then("assert product count {string}")
+    public void assertProductCount(String count) {
+        cartPage.checkProductCount(count);
+    }
+
+    @When("delete product from cart")
+    public void deleteProductFromCart() {
+        cartPage.deleteProductFromCart();
+    }
+
+    @Then("assert cart is empty with {string} message")
+    public void assertCartIsEmptyWithMessage(String emptyMessage) {
+        cartPage.assertCartEmpty(emptyMessage);
     }
 }

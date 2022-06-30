@@ -14,13 +14,11 @@ Feature: e2e make order tests
     When click add to basket
     And go to cart
     Then assert product price
-    When click a product
-    And select "<size>" size
-    And click add to basket
-    And go to cart
-    Then user verifies  product information that price,product code,"<color>","<count>","<size>" , is correct on cart
-    When go to payment phase
-    Then user should see payment screen
+    When increase count to "<count>"
+    Then assert product count "<count>"
+    When delete product from cart
+    Then assert cart is empty with "<empty-message>" message
+
     Examples:
-      | search-text | index | password     | my-account | category-name | branch | color | size | count | web-site-url                  |
-      | bilgisayar  | 2     | Ee1234012400!| Hesabım    | KADIN         | Bluz   | Siyah | M    | 1     | https://www.gittigidiyor.com/ |
+      | search-text | index | count | web-site-url                  | empty-message                     |
+      | bilgisayar  | 2     | 2     | https://www.gittigidiyor.com/ | Sepetinizde ürün bulunmamaktadır. |

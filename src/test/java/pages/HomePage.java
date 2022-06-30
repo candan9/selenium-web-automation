@@ -11,8 +11,9 @@ public class HomePage {
 
     By modal_intro_popup_close= By.className("wis_clsbtn");
     By input_search = By.xpath("//input[@data-cy='header-search-input']");
-    By btn_search = By.xpath("//input[@data-cy='search-find-button']");
-    By btn_basket = By.className("basket-title");
+    By btn_search = By.xpath("//button[@data-cy='search-find-button']");
+    By btn_basket = By.className("gg-ui-btn-default");
+    By span = By.cssSelector("span");
     WebDriver driver;
     ElementHelper elementHelper;
     Actions action;
@@ -43,7 +44,11 @@ public class HomePage {
         elementHelper.click(btn_search);
     }
 
+    public void acceptCookies() {
+        elementHelper.clickElementWithText(span,"Kapat");
+    }
     public void goToCart() {
-        elementHelper.click(btn_basket);
+        elementHelper.checkElementVisible(btn_basket);
+        elementHelper.clickElementWithText(btn_basket,"Sepete Git");
     }
 }
